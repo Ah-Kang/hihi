@@ -8,6 +8,7 @@ const SidebarButtons4 = () => {
 
   // 예시로, 각 버튼 클릭 시 동작하는 함수를 추가합니다.
   // 실제 경로('/attendance', '/board' 등)는 앱의 라우트 구조에 맞게 조정하세요.
+  const goToMainPage =()=> navigate('../TeacherMainPage')
   const goToAttendance = () => navigate('../TeacherPage');
   const goToQuestion = () =>alert('준비 중입니다.')
   const goToAnnounce = () =>alert('준비 중입니다.')
@@ -21,6 +22,9 @@ const SidebarButtons4 = () => {
 
   return (
     <div className={styles.buttonContainer}>
+       <button onClick={goToMainPage} className={`${styles.button} ${styles.textButton}`}>
+      
+      메인페이지</button>
       <button onClick={goToAttendance} className={`${styles.button} ${styles.textButton}`}>출석</button>
       <button onClick={goToQuestion} className={`${styles.button} ${styles.textButton}`}>질문게시판</button>
       <button onClick={goToAnnounce} className={`${styles.button} ${styles.textButton}`}>공지사항</button>

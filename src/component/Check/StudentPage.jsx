@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Table, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS를 임포트합니다.
 import './TP.css'
+import Sidebar from '../SideBar/S_SideBar';
 
 function StudentPage({ courseName }) {
   const [attendanceCode, setAttendanceCode] = useState('');
@@ -25,6 +26,9 @@ function StudentPage({ courseName }) {
 
   return (
     <div className='container mt-5 p-4 shadow bg-white rounded'>
+      <div className='sidebar-container'>
+        <Sidebar width={320} />
+      </div>
     <Container>
       <Row className="justify-content-center">
         <Col md={6}>

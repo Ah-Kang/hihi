@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Table, Form, Container, Row, Col } from 'react-bootstrap';
+import { Button, Table, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './TP.css';
+import Sidebar from '../SideBar/S_SideBar';
 
 function TeacherPage({ courseName }) {
   const [attendanceCode, setAttendanceCode] = useState('');
-  const [timer, setTimer] = useState(0);
   const [countdown, setCountdown] = useState(0);
   const [currentSession, setCurrentSession] = useState(1);
   const [sessionsData, setSessionsData] = useState({
@@ -19,16 +19,11 @@ function TeacherPage({ courseName }) {
     const newCode = Math.floor(1000 + Math.random() * 9000).toString();
     setAttendanceCode(newCode);
   };
-  
-
-  const handleTimerChange = (event) => {
-    setTimer(Number(event.target.value));
-  };
 
   const startSession = () => {
     console.log("Session started");
     generateCode();
-    setCountdown(timer * 60);
+    setCountdown(600); // 타이머를 10분(600초)로 고정
   };
 
   const endSession = () => {
@@ -54,34 +49,22 @@ function TeacherPage({ courseName }) {
   };
 
   return (
+    
     <Container className="my-4 p-4 shadow bg-white rounded">
       <Row className="justify-content-center">
         <Col xs={12} md={6}>
+        <div className='sidebar-container'>
+        <Sidebar width={320} />
+      </div>
           <h1 className="text-center">{courseName}</h1>
 
           <div className="text-center mb-3">
-            <strong>시간</strong> {Math.floor(countdown / 60)}:{('0' + (countdown % 60)).slice(-2)} 분 남음
+            <strong>시간</strong> {Math.floor(countdown / 60)}:{('0' + (countdown % 60)).slice(-2)}
           </div>
-          <Form>
-            <Form.Group as={Row} className="mb-3 justify-content-center">
-              <Col xs={12} sm={8}>
-                <Form.Control
-                  type="number"
-                  placeholder="Set timer (minutes)"
-                  value={timer}
-                  onChange={handleTimerChange}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="d-flex justify-content-center align-items-center">
-              <Col xs={6} sm={4}>
-                <Button className='button' variant="primary" block onClick={startSession}>수업 시작하기</Button>
-              </Col>
-              <Col xs={6} sm={4}>
-                <Button className='button' variant="secondary" block onClick={endSession}>수업 끝내기</Button>
-              </Col>
-            </Form.Group>
-          </Form>
+          <div className="d-flex justify-content-center align-items-center mb-3">
+            <Button variant="primary" onClick={startSession}>수업 시작하기</Button>
+            <Button variant="secondary" onClick={endSession}>수업 끝내기</Button>
+          </div>
           <div className="text-center my-3">
             <strong>출석 코드 : </strong> {attendanceCode}
           </div>

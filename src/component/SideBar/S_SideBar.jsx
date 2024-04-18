@@ -80,9 +80,9 @@ const Sidebar = ({ width=320, children }) => {
   const renderSidebarButtons = () => {
     if (location.pathname.startsWith('/TeacherMainPage')) {
       return <SidebarButtons3 />;
-    } else if (location.pathname.startsWith('/courseT')) {
+    } else if (location.pathname.startsWith('/courseT')|| location.pathname.startsWith('/TeacherPage')) {
       return <SidebarButtons4 />;
-    } else if (location.pathname.startsWith('/course')) {
+    } else if (location.pathname.startsWith('/course')|| location.pathname.startsWith('/StudentPage'))  {
       return <SidebarButtons2 />;
     } else if (location.pathname === '/StudentMainPage') {
       return <SidebarButtons />;
